@@ -1,0 +1,54 @@
+
+class Employee:
+    def __init__(self, name, employee_id, department, salary):
+        self.name = name
+        self.employee_id = employee_id
+        self.department = department
+        self.salary = salary
+
+    def show_details(self):
+        print(f"Name: {self.name}")
+        print(f"Employee ID: {self.employee_id}")
+        print(f"Department: {self.department}")
+        print(f"Salary: ₹{self.salary}")
+
+
+class CompanyAdmin(Employee):
+    def __init__(self, name, employee_id, department, salary, role):
+        super().__init__(name, employee_id, department, salary)
+        self.role = role
+        self.employees = []
+
+    def add_employee(self, employee):
+        self.employees.append(employee)
+        print(f"{employee.name} added successfully!")
+
+    def show_admin_details(self):
+        self.show_details()
+        print(f"Admin Role: {self.role}")
+
+    def show_all_employees(self):
+        print("\n--- Company Employees ---")
+        for employee in self.employees:
+            employee.show_details()
+            print("------------------------")
+
+
+# Create a company admin
+admin = CompanyAdmin(
+    "Parth Goel",
+    "A101",
+    "Management",
+    80000,
+    "HR Admin"
+)
+
+# Create employees
+employee1 = Employee("Rahul", "E101", "IT", 45000)
+employee2 = Employee("Priya", "E102", "Finance", 50000)
+
+# Perform admin operations
+admin.show_admin_details()
+admin.add_employee(employee1)
+admin.add_employee(employee2)
+admin.show_all_employees()
